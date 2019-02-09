@@ -8,7 +8,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new(content: 'タスク入力')
+    @task = Task.new
   end
 
   def create
@@ -16,7 +16,7 @@ class TasksController < ApplicationController
     
     if @task.save
       flash[:success] = 'Taskが正常に設定されました'
-      redirect_to @message
+      redirect_to @task
     else
       flash.now[:danger] = 'Taskが正常に設定されませんでした'
       render :new
@@ -45,7 +45,7 @@ class TasksController < ApplicationController
     @task.destroy
     
     flash[:success] = 'Taskは正常に削除されました'
-    redirect_to task_url
+    redirect_to tasks_url
   end
   
   #Strong Parameter
